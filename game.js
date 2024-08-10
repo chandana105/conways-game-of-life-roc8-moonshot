@@ -93,9 +93,19 @@ function computeNextGeneration() {
   updateGridUI();
 }
 
+// Randomize the grid
+function randomizeGrid() {
+  grid = Array.from({ length: gridSize }, () =>
+    Array.from({ length: gridSize }, () => Math.random() < 0.3)
+  );
+  //   Math.random() < 0.3 evaluates to true with a probability of 30% and false with a probability of 70%. This means that each cell in the grid has a 30% chance of being true and a 70% chance of being false.
+
+  updateGridUI();
+}
+
+document.getElementById("randomize").addEventListener("click", randomizeGrid);
+
 initializeGrid();
-
-
 
 // Underpopulation: If a live cell has fewer than 2 live neighbors, it dies. This is implicitly handled because if liveNeighbors is not 2 or 3, the cell will be set to false (dead) in newGrid.
 // Overpopulation: If a live cell has 4 or more neighbors, it dies. This is also implicitly handled because if liveNeighbors is not 2 or 3, the cell will be set to false.
