@@ -1,5 +1,6 @@
 const gridSize = 30;
 let grid = Array.from({ length: gridSize }, () => Array(gridSize).fill(false));
+let intervalId = null;
 
 const gridContainer = document.getElementById("grid");
 
@@ -93,6 +94,20 @@ function computeNextGeneration() {
   updateGridUI();
 }
 
+// Start or stop the game
+function toggleGame() {
+  if (intervalId) {
+    // If intervalId is set: The function will stop the game by clearing the interval, updating the button text to "Start", and setting intervalId to null.
+    clearInterval(intervalId);
+    intervalId = null;
+    document.getElementById("startStop").textContent = "Start";
+  } else {
+    // If intervalId is not set: The function will start the game by setting up a new interval to call computeNextGeneration every 500 milliseconds, updating the button text to "Stop", and storing the interval ID in intervalId.
+    intervalId = setInterval(computeNextGeneration, 500);
+    document.getElementById("startStop").textContent = "Stop";
+  }
+}
+
 // Randomize the grid
 function randomizeGrid() {
   grid = Array.from({ length: gridSize }, () =>
@@ -103,6 +118,7 @@ function randomizeGrid() {
   updateGridUI();
 }
 
+document.getElementById("startStop").addEventListener("click", toggleGame);
 document.getElementById("randomize").addEventListener("click", randomizeGrid);
 
 initializeGrid();
