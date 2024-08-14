@@ -3,13 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Conway's Game of Life - Roc8 - moonshot</title>
+    <title>Conway's Game of Life - Roc8 - Moonshot</title>
     <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        margin: 0;
+        text-align: center;
+        background-color: #f0f0f0;
+      }
       #grid {
         display: grid;
         grid-template-columns: repeat(30, 20px);
         grid-template-rows: repeat(30, 20px);
         gap: 1px;
+        margin: 20px 0;
       }
       .cell {
         width: 20px;
@@ -20,12 +31,47 @@
       .alive {
         background-color: #333;
       }
+      button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.2s;
+        margin: 10px;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+      button:active {
+        transform: scale(0.98);
+      }
+      p {
+        font-size: 18px;
+        color: #333;
+        margin: 10px 0;
+        max-width: 80%;
+        line-height: 1.6;
+        font-weight: 500;
+      }
+      .button-container {
+        display: flex;
+      }
     </style>
   </head>
   <body>
+    <h1>Conway's Game of Life</h1>
+    <p>
+      Instruction to start the game: Click on the "Randomize" button to start
+      with a random grid and then click "Start" to begin the game.
+    </p>
     <div id="grid"></div>
-    <button id="startStop">Start</button>
-    <button id="randomize">Randomize</button>
+    <div class="button-container">
+      <button id="randomize">Randomize</button>
+      <button id="startStop">Start</button>
+    </div>
     <script src="game.js"></script>
   </body>
 </html>
